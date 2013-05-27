@@ -14,9 +14,16 @@ module.exports = function(db, callback) {
         app.use(express.favicon());
         app.use(express.logger('dev'));
         
-        app.use(express.cookieParser());
-        app.use(express.session({ secret: 'Collage', store: new express.session.MemoryStore }));
-        
+        // app.use(express.cookieParser());
+        // app.use(express.session({ secret: 'Collage', store: new express.session.MemoryStore }));
+		app.use(express.cookieParser());
+		app.use(express.session({
+	        secret: "d4SPw4mz2",
+	        cookie: {
+	            expires: false
+	        }
+	    }));
+		
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         
