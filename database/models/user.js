@@ -1,4 +1,5 @@
-module.exports = function(mongoose){
+var mongoose = require("mongoose");
+module.exports = function(){
 	var Schema = mongoose.Schema;
 	var ObjectId = Schema.ObjectId;
 
@@ -7,24 +8,27 @@ module.exports = function(mongoose){
 		password : String,
 		email 	 : String
 	});
-
-	User = mongoose.model('User', User);
+	// 
+	// //instance methods
+	// User.methods = {
+	// 	getTickets : function (cb) {
+	// 		return this.model("Ticket").find({
+	// 			_user : this._id,
+	// 		},cb);
+	//  	},
+	// 	getCreateCollages : function(cb){
+	// 		return this.model("Collage").find({
+	// 			_creator : this._id
+	// 		},cb);
+	// 	}
+	// }
+	// 
+	// //static methods
+	// User.statics.findByName = function (name, cb) {
+	// 	this.find({ name: new RegExp(name, 'i') }, cb);
+	// }
 	
-	// var me = new User({ name: 'breath103' });
-	// 
-	// me.save(function (err) {
-	// 	if (err) console.log(err);
-	// 
-	// 	var collage = new mongoose.models.Collage({
-	// 		name : "new Collage",
-	// 		_creator : me._id
-	// 	});
-	// 	
-	// 	collage.save(function (err) {
-	// 		if (err) console.log(err);
-	// 		console.log(collage);
-	// 	});
-	// });
+	User = mongoose.model('User', User);
 	return User;
 }
 
