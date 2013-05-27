@@ -13,12 +13,10 @@ module.exports = function(app){
 			password : req.param("password")
 		},function(err,user){
 			if(err || !user) {
-				console.log(err,user);
-				res.redirect("/");
 			} else {
 				req.session.user = user;
-				res.redirect("/home");
 			}
+			res.redirect("/");
 		});
 	});
 	
@@ -32,7 +30,7 @@ module.exports = function(app){
 			if(err) res.json(400,JSON.stringify(err));
 			else {
 				req.session.user = user;
-				res.redirect("/home");
+				res.redirect("/");
 			}
 		});
 	});
