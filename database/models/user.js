@@ -9,12 +9,22 @@ module.exports = function(){
 		email 	 : String
 	});
 
-	User.methods.getCreateCollages = function(cb){
-		return this.model("Collage").find({
-			_creator : this._id
-		},cb);
+	User.methods = {
+		prepareForHome : function(cb){
+			var self = this;
+			this.models["Collage"].find({_creator: this._id},function(err,collages){
+				if(err) cb(err,null);
+				else {
+					self.collages = collages;
+					cb(null,self);
+				}
+			});
+		},
+		print : function(){
+			return "SDFASDFSDF";
+		}
 	};
-	
+
 	User = mongoose.model('User', User);
 	return User;
 }
