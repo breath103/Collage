@@ -8,7 +8,25 @@ module.exports = function(mongoose){
 		email 	 : String
 	});
 
+	User.methods = {
+		prepareForHome : function(cb){
+			var self = this;
+			this.models["Collage"].find({_creator: this._id},function(err,collages){
+				if(err) cb(err,null);
+				else {
+					self.collages = collages;
+					cb(null,self);
+				}
+			});
+		}
+	};
+
 	User = mongoose.model('User', User);
+	
+	var me = new User();
+	console.log(me.prototype);
+	me.prepareForHome();
+	
 	
 	// var me = new User({ name: 'breath103' });
 	// 
