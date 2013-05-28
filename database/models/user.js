@@ -12,7 +12,7 @@ module.exports = function(){
 	User.methods = {
 		prepareForHome : function(cb){
 			var self = this;
-			return this.models["Collage"].find({_creator: this._id},function(err,collages){
+			return mongoose.models.Collage.find({_creator: this._id},function(err,collages){
 				if(err) cb(err,null);
 				else {
 					self.collages = collages;

@@ -15,7 +15,6 @@ module.exports = function(app){
 			if(err || !user) {
 				req.session.user = null;
 			} else {
-				console.log("login : ",user);
 				req.session.user = user;
 			}
 			res.redirect("/");

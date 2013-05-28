@@ -6,7 +6,7 @@ module.exports = function(mongoose){
 		name	 : String
 	});
 	Collage.methods = {
-		getAllObjets : function(cb){
+		populateAllObjets : function(cb){
 			return this.models("ImageObjet").find({_collage : this._id},cb);
 		}
 	};
