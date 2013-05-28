@@ -6,9 +6,18 @@ module.exports = function(app){
     
     app.get("/",function(req,res){
         if (req.session.user) {
-			res.render("home",{
-				user : req.session.user
-			});
+			var user = req.session.user;
+			mongoose.models["Collage"].find({_creator : user._id},function(err,collages){
+	            if(err){
+	                res.send(401);
+	            } else {
+					console.log(collages);
+					user.collages = collages;
+					res.render("home",{
+						user : user
+					});
+			    }
+	        });
 		} else {
 			res.render("index");
 		}

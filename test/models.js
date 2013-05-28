@@ -35,5 +35,15 @@ describe("database",function(){
 				Collage.should.be.a('function');
 			});
 		});
+		describe("Objets",function(){
+			var ImageObjet = null;
+			beforeEach(function(){
+				ImageObjet = mongoose.models.ImageObjet;
+			});
+			it("should be exist",function(){
+				ImageObjet.should.be.a('function');
+			});
+			
+		});
 	});
 });

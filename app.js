@@ -54,5 +54,8 @@ module.exports = function(db, callback) {
     console.log("ROUTE_END");
 
     console.log("APP_CREATE_SUCCESS");
-    callback(null, app);
+	if(callback)
+		callback(null, app);
+		
+	return app;
 }
