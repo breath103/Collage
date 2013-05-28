@@ -10,16 +10,29 @@
 
 		<script src="/js/jquery-1.7.1.js"></script>
         <script src="/js/jquery.transit.min.js"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
 		<script src="/js/google_analytics.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/underscore.js"></script>
-		<script src="/color-picker/jquery.colorpicker.js"></script>
-		<script src="/color-picker/i18n/jquery.ui.colorpicker-nl.js"></script>
-		<script src="/color-picker/swatches/jquery.ui.colorpicker-pantone.js"></script>
-		<script src="/color-picker/parts/jquery.ui.colorpicker-rgbslider.js"></script>
-        <title>Collage</title>
-    
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/objets.js"></script>
+		<title>Collage</title>
+    	<script>
+        var socket = null;
+        function connectWS() {
+            if (socket == null) {
+                socket = io.connect();
+                socket.on("connect", function() {
+                    socket.emit("joinRoom",{collage:"<%=collage._id%>"});
+                });
+                socket.on('message', function(data) {});
+                socket.on('disconnect', function() {});
+            }
+            socket.socket.connect();
+        }
+		$(function(){
+			connectWS();
+		});
+		</script>
 		<style>
 		.collage{
 			

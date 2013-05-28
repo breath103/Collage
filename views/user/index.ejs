@@ -29,16 +29,7 @@
 		</div>
 		<div class="container-fluid">
 			<h4>created Collages</h4>
-			<%user._create_collages.forEach(function(collage){%>
-				<div>
-					<a href="/collages/<%=collage._id%>"><%=collage.name%></a>
-				</div>
-			<%})%>
-			<button class='btn btn-danger'>
-				<i class='icon-plus'></i>new Collage
-			</button>
-			<h4>invited Collages</h4>
-			<%user._invited_collages.forEach(function(collage){%>
+			<%user.collages.forEach(function(collage){%>
 				<div>
 					<a href="/collages/<%=collage._id%>"><%=collage.name%></a>
 				</div>

@@ -28,7 +28,6 @@ module.exports = function(app){
 	});
 	
 	app.post("/collages",function(req,res){
-		console.log(req.session.user._id);
 		var collage = new Collage({
 			name 	 : req.param("name"),
 			_creator : req.session.user._id

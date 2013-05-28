@@ -46,7 +46,27 @@
 		<div class="container">
 			<div class="row-fluid" style="height:100%">
 	    		<div class="span3" id="left-main-column" style="background-color: rgb(228, 228, 228);border-radius: 10px;padding: 5px;height:100%">
-					<h3>Collages</h3>
+					<h4>created Collages</h4>
+					<%user.collages.forEach(function(collage){%>
+						<div>
+							<a href="/collages/<%=collage._id%>"><%=collage.name%></a>
+						</div>
+					<%})%>
+					<form class="input-container" method="post" action="/collages">
+						<div class="form-horizontal">
+							<div class="control-group">
+						    	<label class="control-label" for="inputEmail">Name</label>
+						    	<div class="controls">
+						      		<input type="text" name="name" id="inputName" class='name-input' placeholder="Name"/>
+						    	</div>
+						  	</div>
+						  	<div class="control-group">
+						    	<div class="controls">
+									<button type="submit" class='btn btn-danger'><i class='icon-plus'></i>new Collage</button>
+								</div>
+						  	</div>
+						</div>
+					</form>
 					
 				</div>
 	    		<div class="span9" id="right-main-column" style="background-color: rgb(228, 228, 228);border-radius: 10px;padding: 5px;height:100%">
