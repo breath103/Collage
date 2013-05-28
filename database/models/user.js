@@ -1,4 +1,5 @@
-module.exports = function(mongoose){
+var mongoose = require("mongoose");
+module.exports = function(){
 	var Schema = mongoose.Schema;
 	var ObjectId = Schema.ObjectId;
 
@@ -18,31 +19,13 @@ module.exports = function(mongoose){
 					cb(null,self);
 				}
 			});
+		},
+		print : function(){
+			return "SDFASDFSDF";
 		}
 	};
 
 	User = mongoose.model('User', User);
-	
-	var me = new User();
-	console.log(me.prototype);
-	me.prepareForHome();
-	
-	
-	// var me = new User({ name: 'breath103' });
-	// 
-	// me.save(function (err) {
-	// 	if (err) console.log(err);
-	// 
-	// 	var collage = new mongoose.models.Collage({
-	// 		name : "new Collage",
-	// 		_creator : me._id
-	// 	});
-	// 	
-	// 	collage.save(function (err) {
-	// 		if (err) console.log(err);
-	// 		console.log(collage);
-	// 	});
-	// });
 	return User;
 }
 
