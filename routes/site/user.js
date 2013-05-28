@@ -40,20 +40,22 @@ module.exports = function(app){
 	app.get("/users/:name",function(req,res){
 		User.findOne({name : req.param("name")})
 			.exec(function(err,user){
-				if (err || !user ){
-					res.send(400);
-				} else {
-					Collage.find({_creator : user._id},function(err,collages){
-			            if(err){
-			                res.send(401);
-			            } else {
-							console.log(collages);
-							user = user.toJSON();
-							user.collages = collages;
-							res.render("user/index",{user : user});
-			            }
-			        });
-				}
+				user.prepareForHome(function(err,user){
+					if (err || !user ){
+						res.send(400);
+					} else {
+						Collage.find({_creator : user._id},function(err,collages){
+				            if(err){
+				                res.send(401);
+				            } else {
+								console.log(collages);
+								user = user.toJSON();
+								user.collages = collages;
+								res.render("user/index",{user : user});
+				            }
+				        });
+					}
+				})
 			});
 	});
 	
