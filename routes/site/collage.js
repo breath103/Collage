@@ -22,7 +22,14 @@ module.exports = function(app){
 	        if(err){
 	            res.send(401);
 	        } else {
-				res.render("collage/view",{collage : collage});
+				collage.getObjets(function(err,objets){
+					var c = collage.toJSON();
+					c.objets = objets;
+					console.log(c);
+					res.render("collage/view",{
+						collage : c
+					});
+				})
 	        }
 	    });
 	});

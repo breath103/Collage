@@ -19,9 +19,6 @@ module.exports = function(){
 					cb(null,self);
 				}
 			});
-		},
-		print : function(){
-			return "SDFASDFSDF";
 		}
 	};
 

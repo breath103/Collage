@@ -8,9 +8,20 @@ module.exports = function(mongoose)
 	var ImageObjet = new Schema({
 		_creator : { type: ObjectId, ref: 'User' },
 		_collage : { type: ObjectId, ref: 'Collage' },
-		createdTime : { type:Date, default: Date.now }
+		size : {
+			width  : {type : Number},
+			height : {type : Number}
+		},
+		position : {
+			x : {type : Number},
+			y : {type : Number}
+		},
+		createdTime : { type: Date, default: Date.now },
+		image : { type: String }
 	});
+
 	ImageObjet = mongoose.model("ImageObjet",ImageObjet);
-	
+	return ImageObjet;
 }
+
 

@@ -4,7 +4,15 @@ module.exports = function(mongoose){
 
 	var ImageObjet = new Schema({
 		_collage : { type: ObjectId, ref: 'Collage' },
-		createdTime : { type:Date ,default :Date.now}
+		size : {
+			width  : {type : Number},
+			height : {type : Number}
+		},
+		position : {
+			x : {type : Number},
+			y : {type : Number}
+		},
+		createdTime : { type: Date ,default: Date.now }
 	});
 
 	ImageObjet = mongoose.model('ImageObjet', ImageObjet);

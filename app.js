@@ -13,9 +13,6 @@ module.exports = function(db, callback) {
         app.set('view engine', 'ejs');
         app.use(express.favicon());
         app.use(express.logger('dev'));
-        
-        // app.use(express.cookieParser());
-        // app.use(express.session({ secret: 'Collage', store: new express.session.MemoryStore }));
 		app.use(express.cookieParser());
 		app.use(express.session({
 	        secret: "d4SPw4mz2",

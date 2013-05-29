@@ -13,14 +13,13 @@ module.exports = function(grunt) {
 		},
 		'simplemocha' : {
 	 		options: {
-			   globals: ['should'],
+				globals: ['should'],
 				timeout: 3000,
 				ignoreLeaks: false,
-				grep: '*-test',
 				ui: 'bdd',
 				reporter: 'tap'
 			},
-			all: { src: ['test/**/*.js'] }
+			all: { src: ['test/*.js'] }
 		}
 	});
 	// For this to work, you need to have run `npm install grunt-simple-mocha`

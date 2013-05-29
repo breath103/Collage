@@ -7,12 +7,13 @@ describe("routes",function(){
 		app = require("../app")();
 	});
 	
-	it("should create express",function(){
-		should.exist(app);
+	describe("express server",function(){
+		it("should create express",function(){
+			should.exist(app);
+		});
 	});
 	
-	
 	after(function(){
-		
+		app = null;
 	});
 });

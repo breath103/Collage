@@ -6,10 +6,16 @@ module.exports = function(mongoose){
 		name	 : String
 	});
 	Collage.methods = {
-		populateAllObjets : function(cb){
-			return this.models("ImageObjet").find({_collage : this._id},cb);
+		getObjets: function(cb){
+			return mongoose.models["ImageObjet"].find({ _collage: this._id},cb);
+			// 	  		var promise = new mongoose.Promise;
+			// if (cb) promise.addBack(cb);
+			// mongoose.models["ImageObjet"].find( { _collage : this._id} ,
+			// 								promise.resolve.bind(promise));
+			// 	  	  	return promise;
 		}
 	};
+	
 	Collage = mongoose.model('Collage', Collage);
 	
 	return Collage;
