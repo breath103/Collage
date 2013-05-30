@@ -1,3 +1,5 @@
+var _ = require("underscore");
+var async = require("async");
 module.exports = function(mongoose){
 	var Schema = mongoose.Schema;
 	var ObjectId = Schema.ObjectId;
@@ -6,13 +8,23 @@ module.exports = function(mongoose){
 		name	 : String
 	});
 	Collage.methods = {
+		getLinkObjets : function(cb){
+			return mongoose.models.LinkObjet.find({ _collage: this._id},cb);
+		},
+		getImageObjets: function(cb){
+			return mongoose.models.ImageObjet.find({ _collage: this._id},cb);
+		},
 		getObjets: function(cb){
-			return mongoose.models["ImageObjet"].find({ _collage: this._id},cb);
-			// 	  		var promise = new mongoose.Promise;
-			// if (cb) promise.addBack(cb);
-			// mongoose.models["ImageObjet"].find( { _collage : this._id} ,
-			// 								promise.resolve.bind(promise));
-			// 	  	  	return promise;
+			async.parallel([
+			    _.bind(this.getLinkObjets,this),
+			    _.bind(this.getImageObjets,this)
+			], function(err, results){
+				var objets = {
+					links  : results[0],
+					images : results[1]
+				};
+				cb(err,objets);
+			});
 		}
 	};
 	

@@ -23,9 +23,11 @@
 		};
 		</script>
 		
-		
+		<script src="/js/models/link_objet.js"></script>
 		<script src="/js/models/image_objet.js"></script>
 		<script src="/js/models/collage.js"></script>
+		
+		<script src="/js/views/link_objet.js"></script>
 		<script src="/js/views/image_objet.js"></script>
 		<script src="/js/views/collage.js"></script>
 		
@@ -41,25 +43,51 @@
 	                });
 	                socket.on('message', function(data) {});
 	                socket.on('disconnect', function() {});
-	            
-					socket.on("imageObjet.create",function(data){
-						$(".collage").append(JSON.stringify(data));
-					});
-				}
+	  			}
 	            socket.socket.connect();
 	        }
 			$(function(){
 				connectWS();
 				
 				var collage = <%-JSON.stringify(collage)%>;
-				var collectionView = new CollageView({
+				window.collageView = new CollageView({
 					model : new Collage(collage)
 				});
+				window.collageView.registerWSEvents(socket);
 			});
+			
+			function test_image(){
+				socket.emit("ImageObjet.create",{
+					image : $("#test_input").val(),//"http://www.naver.com",
+					position : {x:500 * Math.random(),y:500 * Math.random()},
+					size : {width:200,height:200}
+				});
+			}
+			function test_link(){
+				socket.emit("LinkObjet.create",{
+					link : $("#test_input").val(),//"http://www.naver.com",
+					position : {x:500 * Math.random(),y:500 * Math.random()},
+					size : {width:200,height:200}
+				});
+			}
 		</script>
 		<style>
 			.collage{
 			
+			}
+			.collage .image-objet{
+				position:absolute;
+			}
+			.collage .image-objet img{
+				width:100%;
+				height:100%;
+			}
+	
+			.collage .link-objet { position:absolute; }
+			.collage .link-objet iframe{
+				border:0;
+				width:100%;
+				height:100%;
 			}
 		</style>
 	</head>
@@ -71,6 +99,11 @@
 		  	</div>
 		</div>
 		<div class="collage">
+			<div class="dev-pannel">
+				<input type="text" id="test_input" />
+				<button class="btn" onclick="test_image();">new image</button>
+				<button class="btn" onclick="test_link();">new link</button>
+			</div>
 		</div>
 	</body>
 </html>

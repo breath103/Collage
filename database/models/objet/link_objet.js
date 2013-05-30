@@ -5,24 +5,24 @@ module.exports = function(mongoose)
 	var Schema = mongoose.Schema;
 	var ObjectId = Schema.ObjectId;
 
-	var ImageObjet = new Schema({
+	var LinkObjet = new Schema({
 		_creator : { type: ObjectId, ref: 'User' },
 		_collage : { type: ObjectId, ref: 'Collage' },
 		size : {
-			width  : {type : Number},
-			height : {type : Number}
+			width  : {type : Number, default: 0},
+			height : {type : Number, default: 0}
 		},
 		position : {
-			x : {type : Number},
-			y : {type : Number}
+			x : {type : Number, default: 0},
+			y : {type : Number, default: 0}
 		},
-		rotation : { type : Number,default : 0 },
+		rotation : { type : Number, default: 0 },
 		createdTime : { type: Date, default: Date.now },
-		image : { type: String }
+		link : { type: String }
 	});
 	
-	ImageObjet = mongoose.model("ImageObjet",ImageObjet);
-	return ImageObjet;
+	LinkObjet = mongoose.model("LinkObjet",LinkObjet);
+	return LinkObjet;
 }
 
 

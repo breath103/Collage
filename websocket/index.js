@@ -6,6 +6,9 @@ var path     = require("path");
 
 var mongoose = require("mongoose");
 
+var image_objet_controller = require("./controller/image_objet");
+var link_objet_controller  = require("./controller/link_objet");
+
 module.exports = function(server){
     console.log("	--webSocket--");
 	var io = socketIO.listen(server);
@@ -21,16 +24,19 @@ module.exports = function(server){
         socket.on('disconnect', function () {
         
 		});
+
+		image_objet_controller(io,socket);	
+		link_objet_controller (io,socket);	
 		
-		var ImageObjet = mongoose.models["ImageObjet"];
-		socket.on('imageObjet.create',function(data){
-			var imageObjet = new ImageObjet({
-				_collage : socket.collage,
-				image : data.image
-			});
-			imageObjet.save(function(err,objet){ });
-			
-			socket.broadcast.to(socket.collage).emit('imageObjet.create', imageObjet.toJSON() );
-		});
+		// var ImageObjet = mongoose.models["ImageObjet"];
+		// socket.on('imageObjet.create',function(data){
+		// 	var imageObjet = new ImageObjet({
+		// 		_collage : socket.collage,
+		// 		image : data.image
+		// 	});
+		// 	imageObjet.save(function(err,objet){ });
+		// 	
+		// 	socket.broadcast.to(socket.collage).emit('imageObjet.create', imageObjet.toJSON() );
+		// });
     });
 }

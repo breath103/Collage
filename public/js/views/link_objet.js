@@ -1,9 +1,9 @@
 (function ($) {
 	'use strict';
-	window.ImageObjetView = Backbone.View.extend({
+	window.LinkObjetView = Backbone.View.extend({
 		tagName  : "div",
-		className : "image-objet",
-		template : _.template("<img src='<?=e.image?>'/>"),
+		className : "link-objet",
+		template : _.template("<iframe src='<?=e.link?>' />"),
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
 			this.render();
@@ -16,7 +16,6 @@
 				height : this.model.get("size").height + "px",
 				"-webkit-transform": "rotate(" + this.model.get("rotation") + "deg)"
 			});
-			console.log(this.model.toJSON());
 			this.$el.html(this.template({e : this.model.toJSON()}));
 			return this;
 		}

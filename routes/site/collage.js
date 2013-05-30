@@ -25,7 +25,6 @@ module.exports = function(app){
 				collage.getObjets(function(err,objets){
 					var c = collage.toJSON();
 					c.objets = objets;
-					console.log(c);
 					res.render("collage/view",{
 						collage : c
 					});

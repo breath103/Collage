@@ -17,19 +17,7 @@ module.exports = function(app){
 						user : user
 					});
 				}
-			})
-			
-			// mongoose.models["Collage"].find({_creator : user._id},function(err,collages){
-			// 	            if(err){
-			// 	                res.send(401);
-			// 	            } else {
-			// 		console.log(collages);
-			// 		user.collages = collages;
-			// 		res.render("home",{
-			// 			user : user
-			// 		});
-			//     }
-			// 	        });
+			});
 		} else {
 			res.render("index");
 		}
