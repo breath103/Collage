@@ -3,12 +3,15 @@
 	window.CollageView = Backbone.View.extend({
 		el: ".collage",
 		initialize: function () {
-			_.bindAll(this,"onNewImageObjet","onNewLinkObjet");
+			_.bindAll(this,"onNewImageObjet","onNewLinkObjet",
+						   "onUpdateImageObjet","onUpdateLinkObjet");
 			
 			this.listenTo(this.model, 'change', this.render);
 			
 			var self = this;
 			var objets = this.model.get("objets");
+			
+			this.objetsViews = {};
 			
 			objets.images.forEach(this.onNewImageObjet);
 			objets.links.forEach(this.onNewLinkObjet);
@@ -16,14 +19,27 @@
 		onNewImageObjet : function(objet){
 			var view = new ImageObjetView({ model : new ImageObjet(objet) });
 			this.$el.append(view.$el);
+			
+			this.objetsViews[objet._id] = view;
+		},
+		onUpdateImageObjet : function(objet){
+			this.objetsViews[objet._id].model.set("position",objet.position);
 		},
 		onNewLinkObjet : function(objet){
 			var view = new LinkObjetView({ model : new LinkObjet(objet) });
 			this.$el.append(view.$el);
+		
+			this.objetsViews[objet._id] = view;
+		},
+		onUpdateLinkObjet : function(objet){
+			
 		},
 		registerWSEvents : function(socket){
 			socket.on("ImageObjet.create",this.onNewImageObjet);
 			socket.on("LinkObjet.create",this.onNewLinkObjet);
+			
+			socket.on("ImageObjet.update",this.onUpdateImageObjet);
+			socket.on("LinkObjet.update",this.onUpdateLinkObjet);
 		},
 		render : function () {
 			this.$el.html(this.template(this.model.toJSON()));

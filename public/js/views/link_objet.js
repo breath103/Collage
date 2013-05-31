@@ -11,7 +11,7 @@
 		render: function () {
 			this.$el.css({
 				left   : this.model.get("position").x + "px",
-				right  : this.model.get("position").x + "px",
+				top    : this.model.get("position").y + "px",
 				width  : this.model.get("size").width + "px",
 				height : this.model.get("size").height + "px",
 				"-webkit-transform": "rotate(" + this.model.get("rotation") + "deg)"
