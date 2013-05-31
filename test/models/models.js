@@ -81,15 +81,22 @@ describe("database",function(){
 					});
 				});
 			});
+			
 			xdescribe("methods",function(){
 				describe("getLinkObjets",function(){
-					
+					it("should return all linkObjets that belong to this collage",function(){
+						
+					});
 				});
 				describe("getImageObjets",function(){
-					
+					it("should return all imageObjets that belong to this collage",function(){
+						
+					});
 				});
 				describe("getObjets",function(){
-					
+					it("should return all Objets that belong to this collage",function(){
+						
+					});
 				});
 			});
 		});
@@ -133,7 +140,7 @@ describe("database",function(){
 				});
 			});
 		});
-		describe("Objets",function(){
+		describe("ImageObjet",function(){
 			var ImageObjet = null;
 			beforeEach(function(){
 				ImageObjet = mongoose.models.ImageObjet;
