@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		'watch' : {
   		 	scripts: {
-    			files: ['**/*.js'],
+    			files: ['**/*.js',"!public/**/*.js"],
     			tasks: ['simplemocha'],
    			 	options: {
       			},

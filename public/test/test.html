@@ -11,11 +11,10 @@
 	<script>
 	 	mocha.ui('bdd');
 		mocha.reporter('html');
-	  	expect = chai.expect;
+		expect = chai.expect;
 		var should = chai.should();
 	</script>
-	
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="/js/jquery.transit.min.js"></script>
 	<script src="/js/google_analytics.js"></script>
@@ -32,7 +31,6 @@
 			socket.emit(model.modelName + ".update",model.toJSON());
 		};
 	</script>
-	
 	<script src="/js/models/link_objet.js"></script>
 	<script src="/js/models/image_objet.js"></script>
 	<script src="/js/models/collage.js"></script>
@@ -40,8 +38,8 @@
 	<script src="/js/views/image_objet.js"></script>
 	<script src="/js/views/collage.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-
 	<script src="views/image_objet.js"></script>
+	<script src="views/collage.js"></script>
 	
 	<script>
 		if (window.mochaPhantomJS) {

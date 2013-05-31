@@ -16,7 +16,6 @@ module.exports = function(app){
 	        }
 	    });
 	});
-
 	app.get("/collages/:id",function(req,res){
 		Collage.findById(req.param("id"),function(err,collage){
 	        if(err){
