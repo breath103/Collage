@@ -4,7 +4,6 @@ var http = require("http"),
 process.on('uncaughtException', function(err) {
     console.error(err.stack);
 });
-
 try {
     Step(function() {
         require("./database")(this);

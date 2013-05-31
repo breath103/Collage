@@ -21,7 +21,13 @@ describe("ImageObjet",function(){
 		});
 		describe("attributes",function(){
 			it("should have template",function(){
-			
+				this.view.template.should.be.an("function");
+			});
+		});
+		
+		descrbie("instance methods",function(){
+			describe("onMoved",function(){
+				
 			});
 		});
 	});
