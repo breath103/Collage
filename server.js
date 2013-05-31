@@ -16,10 +16,7 @@ try {
 		httpServer.listen(app.get('port'), function(err) {
 	    	console.log("Express server listening on port " + app.get('port'));
 	    }); 
-		
 	});
-}
-catch (e) {
+} catch (e) {
     console.log(e);
 }
-

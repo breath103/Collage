@@ -4,6 +4,7 @@ describe("CollageView",function(){
 			CollageView.should.be.an("function");
 		});
 	});
+	
 	describe("attributes",function(){
 		this.view = null
 		beforeEach(function(){
@@ -20,7 +21,10 @@ describe("CollageView",function(){
 			this.view.should.be.an.instanceof(CollageView);
 		});
 	});
+	
 	describe("render",function(){
-		
+		it("should update el data",function(){
+			
+		});
 	});
 });
