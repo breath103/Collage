@@ -27,6 +27,19 @@ module.exports = function(mongoose){
 			});
 		}
 	};
+	Collage.statics.middleware = {
+		findById : function(req,res,next){
+			var id = req.param("id");
+			Collage.findById(id,function(err,collage){
+				if (err) next(err);
+				else if(!collage) next(new Error("there is no collage with id",id));
+				else {
+					req.collage = collage;
+					next();
+				}
+			});
+		}
+	};
 	
 	Collage = mongoose.model('Collage', Collage);
 	

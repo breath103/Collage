@@ -17,6 +17,7 @@ describe("CollageView",function(){
 				}) 
 			});
 		});
+		
 		it("should have instance",function(){
 			this.view.should.be.an.instanceof(CollageView);
 		});

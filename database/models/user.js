@@ -21,8 +21,19 @@ module.exports = function(){
 			});
 		}
 	};
+	
+	User.statics.middleware = {
+		findByUsername : function(req,res,next){
+			User.findOne({name : req.param("name")},function(err,user){
+				if(err) { next(err); }
+				else {
+					req.user = user;
+					next();
+				}
+			});
+		}
+	};
 
 	User = mongoose.model('User', User);
 	return User;
 }
-

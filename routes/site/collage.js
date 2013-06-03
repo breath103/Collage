@@ -2,34 +2,25 @@ var fs = require("fs");
 var mongoose = require("mongoose");
 
 module.exports = function(app){
-    console.log("   	--Collages--");
-	
 	var Collage = mongoose.models.Collage;
 	var User    = mongoose.models.User;
 
-	app.get("/collages",function(req,res){
+	app.get("/collages",function(req,res,next){
 	    Collage.find({},function(err,users){
-	        if(err){
-	            res.send(401);
-	        } else {
-				res.json(users,200);
-	        }
+	        if(err) next(err);
+			else res.json(users,200);
 	    });
 	});
-	app.get("/collages/:id",function(req,res){
-		Collage.findById(req.param("id"),function(err,collage){
-	        if(err){
-	            res.send(401);
-	        } else {
-				collage.getObjets(function(err,objets){
-					var c = collage.toJSON();
-					c.objets = objets;
-					res.render("collage/view",{
-						collage : c
-					});
-				})
-	        }
-	    });
+	
+	app.get("/collages/:id",Collage.middleware.findById,function(req,res){
+		var collage = req.collage;
+		collage.getObjets(function(err,objets){
+			var c = collage.toJSON();
+			c.objets = objets;
+			res.render("collage/view",{
+				collage : c
+			});
+		});
 	});
 	
 	app.post("/collages",function(req,res){
@@ -44,6 +35,4 @@ module.exports = function(app){
 			}
 		});
 	});
-	
-    console.log("   	--Collages--");
 };

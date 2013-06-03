@@ -13,7 +13,6 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/underscore.js"></script>
 		<script src="/js/backbone/backbone.js"></script> 
-		
 		<script>
 		_.templateSettings = {
 			escape		: /<\?-([\s\S]+?)\?>/g,
@@ -28,7 +27,6 @@
 		};
 		
 		</script>
-		
 		<script src="/js/models/link_objet.js"></script>
 		<script src="/js/models/image_objet.js"></script>
 		<script src="/js/models/collage.js"></script>
@@ -88,8 +86,9 @@
 				width:100%;
 				height:100%;
 			}
-	
-			.collage .link-objet { position:absolute; }
+			.collage .link-objet {
+				 position:absolute; 
+			 }
 			.collage .link-objet iframe{
 				border:0;
 				width:100%;

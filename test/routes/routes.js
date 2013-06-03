@@ -4,7 +4,7 @@ var should   = require("should");
 var app = null;
 describe("routes",function(){
 	before(function(){
-		app = require("../app")();
+		app = require("../../app")();
 	});
 	
 	describe("express server",function(){
