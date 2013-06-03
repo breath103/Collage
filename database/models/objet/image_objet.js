@@ -1,23 +1,11 @@
 var mongoose = require("mongoose");
 var extend   = require('mongoose-schema-extend');
-module.exports = function(mongoose)
+module.exports = function(mongoose,objetSchema)
 {
 	var Schema = mongoose.Schema;
 	var ObjectId = Schema.ObjectId;
 
-	var ImageObjet = new Schema({
-		_creator : { type: ObjectId, ref: 'User' },
-		_collage : { type: ObjectId, ref: 'Collage' },
-		size : {
-			width  : {type : Number},
-			height : {type : Number}
-		},
-		position : {
-			x : {type : Number},
-			y : {type : Number}
-		},
-		rotation : { type : Number,default : 0 },
-		createdTime : { type: Date, default: Date.now },
+	var ImageObjet = objetSchema.extend({
 		image : { type: String }
 	});
 	

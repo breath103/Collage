@@ -22,7 +22,6 @@ module.exports = function(grunt) {
 			all: { src: ['test/*.js','test/**/*.js','test/**/**/*.js'] }
 		}
 	});
-	// For this to work, you need to have run `npm install grunt-simple-mocha`
 	grunt.loadNpmTasks('grunt-simple-mocha');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
