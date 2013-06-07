@@ -4,18 +4,15 @@ var http = require("http"),
 process.on('uncaughtException', function(err) {
     console.error(err.stack);
 });
-try {
-    Step(function() {
-        require("./database")(this);
-    }, function(err, db) {
-		require("./app")(db, this);
-    }, function(err, app) {
-	    var httpServer = http.createServer(app);
-		require("./websocket")(httpServer);
-		httpServer.listen(app.get('port'), function(err) {
-	    	console.log("Express server listening on port " + app.get('port'));
-	    }); 
-	});
-} catch (e) {
-    console.err(e);
-}
+
+Step(function() {
+    require("./database")(this);
+}, function(err, db) {
+	require("./app")(db, this);
+}, function(err, app) {
+    var httpServer = http.createServer(app);
+	require("./websocket")(httpServer);
+	httpServer.listen(app.get('port'), function(err) {
+    	console.log("Express server listening on port " + app.get('port'));
+    }); 
+});
